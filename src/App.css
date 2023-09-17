@@ -1,0 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Open+Sans&family=Rubik&family=Ubuntu&family=Work+Sans:wght@300&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+::-webkit-scrollbar {
+  display: none;
+  width: 0px;
+}
+::-webkit-scrollbar-thumb {
+  display: none;
+  background: rgba(136, 136, 136, 0.281);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.messages {
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
