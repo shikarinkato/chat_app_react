@@ -90,8 +90,21 @@ const SignUp = () => {
       setLoading(false);
       return;
     }
-
+    let userdata;
     try {
+      if (!pic) {
+        userdata = {
+          name,
+          email,
+          password,
+        };
+      }
+      userdata = {
+        name,
+        email,
+        password,
+        pic,
+      };
       const response = await fetch(`${server}/api/v1/users/register`, {
         method: "POST",
         headers: {
@@ -100,7 +113,8 @@ const SignUp = () => {
         body: JSON.stringify({ name, email, password, pic }),
       });
       const data = await response.json();
-      console.log(pic)
+      console.log(pic);
+      console.log(response);
 
       if (!response.ok) {
         toast.error(data.message);
@@ -119,6 +133,7 @@ const SignUp = () => {
       setIsAuthenticated(false);
     }
   };
+
   return (
     <VStack spacing="5px">
       <FormControl id="name" isRequired rowgap={3}>
@@ -128,7 +143,7 @@ const SignUp = () => {
           onChange={(e) => setName(e.target.value)}
         ></Input>
       </FormControl>
-      <FormControl id="email" isRequired rowgap={3}>
+      <FormControl id="semail" isRequired rowgap={3}>
         <FormLabel>Email</FormLabel>
         <Input
           type={"email"}
@@ -136,7 +151,7 @@ const SignUp = () => {
           onChange={(e) => setEmail(e.target.value)}
         ></Input>
       </FormControl>
-      <FormControl id="password" mt="1rem" isRequired rowgap={3}>
+      <FormControl id="spassword" mt="1rem" isRequired rowgap={3}>
         <FormLabel>Password</FormLabel>
         <InputGroup>
           <Input
